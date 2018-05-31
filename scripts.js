@@ -56,17 +56,17 @@ function setGamePoints() {
 }
 
 function newGame() {
-  player.name = prompt('Please enter your name', 'imię gracza');
-  if (player.name) {
-    player.score = computer.score = 0;
-    gameState = 'started';
-    setGameElements();
-
-    playerNameElem.innerHTML = player.name;
-    
-  }
+    player.name = prompt('Please enter your name', 'imię gracza');
+    while(/[^a-zA-Z]+/.test(player.name)) {
+        player.name = prompt('Your name needs to contain letters', 'imię gracza');
+    }
+    if (player.name) {
+        player.score = computer.score = 0;
+        gameState = 'started';
+        setGameElements();
+        playerNameElem.innerHTML = player.name;
+    }
 }
-
 function getComputerPick() {
     var possiblePicks = ['rock', 'paper', 'scissors'];
     return possiblePicks[Math.floor(Math.random()*3)];
